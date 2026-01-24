@@ -46,7 +46,7 @@ def generate_video_description(user_input, api_key=None):
 
 I will give you a topic (a word, phrase, or short sentence).
 
-Generate a clear, engaging teaching script that lasts at most 30 seconds when spoken.
+Generate a clear, engaging teaching script that around 30 seconds when spoken.
 
 Rules:
 

@@ -10,7 +10,7 @@ def generate_speech(text, output_dir="outputs"):
     api_key = getenv("MAGIC_HOUR_API_KEY_PREMIUM") or getenv("MAGIC_HOUR_API_KEY")
 
     if not api_key:
-        print("❌ Error: MAGIC_HOUR_API_KEY_PREMIUM or MAGIC_HOUR_API_KEY is missing from environment/env file.")
+        print("[ERROR] MAGIC_HOUR_API_KEY_PREMIUM or MAGIC_HOUR_API_KEY is missing from environment/env file.")
         return None
 
     client = Client(token=api_key)
@@ -29,19 +29,19 @@ def generate_speech(text, output_dir="outputs"):
         )
 
         if result.status == "complete":
-            print(f"✅ Voice generation complete!")
+            print(f"[OK] Voice generation complete!")
             # print(f"Credits charged: {result.credits_charged}")
             if result.downloaded_paths and len(result.downloaded_paths) > 0:
                 print(f"Downloaded to: {result.downloaded_paths[0]}")
                 return result.downloaded_paths[0]
             return None
         else:
-            print(f"❌ Job failed with status: {result.status}")
+            print(f"[ERROR] Job failed with status: {result.status}")
             print(f"Result details: {result}")
             return None
 
     except Exception as e:
-        print(f"\n❌ An API error occurred:")
+        print(f"\n[ERROR] An API error occurred:")
         print(f"{e}")
         if hasattr(e, 'body'):
             print(f"Error Body: {e.body}")

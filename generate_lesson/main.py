@@ -9,22 +9,43 @@ from text_to_video import generate_text_to_video
 from text_speech import generate_speech
 from moviepy import VideoFileClip, AudioFileClip, vfx
 
-def combine_audio_video(video_path, audio_path, output_path="outputs/final_video.mp4"):
+def combine_audio_video(video_path, audio_path, output_path="outputs/final_video.mp4", max_size_mb=7.5):
     """
     Combines video and audio files into a single video file.
+    Automatically adjusts bitrate to keep file under max_size_mb (default 7.5MB for Discord's 8MB limit).
     """
     try:
         print(f"Combining video ({video_path}) and audio ({audio_path})...")
-        
+
         video_clip = VideoFileClip(video_path)
         audio_clip = AudioFileClip(audio_path)
-        
+
+        # Calculate target bitrate to stay under max_size_mb
+        # max_size_mb in bits, minus ~128kbps for audio, divided by duration
+        duration = audio_clip.duration
+        max_bits = max_size_mb * 8 * 1024 * 1024  # Convert MB to bits
+        audio_bitrate = 128 * 1024  # 128kbps for audio
+        available_bits = max_bits - (audio_bitrate * duration)
+        target_video_bitrate = int(available_bits / duration)
+
+        # Cap at reasonable values (min 500kbps, max 5000kbps)
+        target_video_bitrate = max(500 * 1024, min(target_video_bitrate, 5000 * 1024))
+        bitrate_str = f"{target_video_bitrate // 1024}k"
+
+        print(f"Video duration: {duration:.1f}s, using bitrate: {bitrate_str}")
+
         # In MoviePy v2, use with_effects([vfx.Loop(...)])
         final_video = video_clip.with_effects([vfx.Loop(duration=audio_clip.duration)])
-        
+
         final_video = final_video.with_audio(audio_clip)
-        
-        final_video.write_videofile(output_path, codec="libx264", audio_codec="aac")
+
+        final_video.write_videofile(
+            output_path,
+            codec="libx264",
+            audio_codec="aac",
+            bitrate=bitrate_str,
+            audio_bitrate="128k"
+        )
         print(f"Final video saved to: {output_path}")
         return output_path
     except Exception as e:
