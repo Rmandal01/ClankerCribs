@@ -1,8 +1,8 @@
-MAGIC HOUR VIDEO BOT
+# MAGIC HOUR VIDEO BOT
 
 A Discord bot powered by Magic Hour AI and Gemini that generates various types of AI videos, animations, and educational content.
-
-FEATURES
+Check it out here: https://devpost.com/software/clankercribs
+### FEATURES
 
 - Text to Video (/text2video): Generate a video from a text prompt.
 - Image to Video (/img2video): Convert a static image into a video.
@@ -13,12 +13,12 @@ FEATURES
 - Brainrot Generator (/brainrot_v2): Generate chaotic, brainrot-style memes with specific characters.
 - Educational Lessons (/generate_lesson): Create educational video lessons on a given topic.
 
-PREREQUISITES
+### PREREQUISITES
 
 - Python 3.8+
 - FFmpeg (https://ffmpeg.org/download.html) installed and added to system PATH (required for video processing).
 
-INSTALLATION
+### INSTALLATION
 
 1.  Clone the repository:
     git clone <repository-url>
@@ -33,7 +33,7 @@ INSTALLATION
     MAGIC_HOUR_API_KEY=your_magic_hour_api_key
     GEMINI_API_KEY=your_gemini_api_key
 
-USAGE
+### USAGE
 
 1.  Run the bot:
     python bot.py
@@ -41,7 +41,7 @@ USAGE
 2.  Discord Commands:
     Use /magichelp in Discord to see a full list of available commands.
 
-TROUBLESHOOTING
+### TROUBLESHOOTING
 
 -   Encoding Issues: The bot automatically reconfigures sys.stdout for UTF-8 on Windows to handle special characters.
 -   Import Errors: Ensure all submodules like generate_lesson are present and dependencies are installed.
