@@ -6,11 +6,6 @@ Check it out here: https://devpost.com/software/clankercribs
 
 - Text to Video (/text2video): Generate a video from a text prompt.
 - Image to Video (/img2video): Convert a static image into a video.
-- Face Swap (/faceswap): Swap a face in a video with another face.
-- Animate Image (/animate): Animate a static image with various styles (Cyberpunk, Studio Ghibli, etc.).
-- Lip Sync (/lipsync): Sync lips in a video to an audio track.
-- Talking Photo (/talkingphoto): Make a photo talk using an audio file.
-- Brainrot Generator (/brainrot_v2): Generate chaotic, brainrot-style memes with specific characters.
 - Educational Lessons (/generate_lesson): Create educational video lessons on a given topic.
 
 ### PREREQUISITES
